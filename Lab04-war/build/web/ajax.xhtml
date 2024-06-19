@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body{
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #ddd;
+                background-image: url('https://i.imgur.com/Pzksh49.png');
+                object-fit: cover;
+            }
+            .container{
+                max-width: 400px;
+                width: 100%;
+                background: #fff;
+                border-radius: 15px;
+                padding: 20px 15px;
+            }
+            .menu{
+                margin: 15px 0;
+                display: flex;
+                flex-direction: column;
+            }
+            .menu span{
+                font-weight: 600;
+                margin-bottom: 10px;
+            }
+            select{
+                height: 30px;
+                padding: 0 10px;
+                border: 1px solid #ddd;
+                border-radius: 7px;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <h1>Ajax tag - selectOneMenu</h1>
+            <h:form>
+                <div class="menu">
+                    <span>Region</span>
+                <h:selectOneMenu value="#{ajaxSelectOneMenuMB.selectedRegion}">
+                    <f:ajax listener="#{ajaxSelectOneMenuMB.changeRegion()}" render="specialTerritories"/>
+                    <f:selectItem itemValue="0" itemLabel="Please choose region"/>
+                    <f:selectItems value="#{ajaxSelectOneMenuMB.showAllRegion()}" var="itemRegion"
+                                   itemValue="#{itemRegion.regionID}"
+                                   itemLabel="#{itemRegion.regionDescription}"/>
+                </h:selectOneMenu>
+            </div>
+            <div class="menu">
+                <span>Territories</span>
+                <h:selectOneMenu id="specialTerritories" value="#{ajaxSelectOneMenuMB.selectedTerritories}">
+                <f:selectItem itemValue="0" itemLabel="Territories of Region"/>
+                <f:selectItems value="#{ajaxSelectOneMenuMB.territoriesSpecialities()}"
+                               var="itemTerritories"
+                               itemValue="#{itemTerritories.territoryID}"
+                               itemLabel="#{itemTerritories.territoryDescription}"/>
+                </h:selectOneMenu>
+            </div>
+            </h:form>
+        </div>
+    </h:body>
+</html>
+

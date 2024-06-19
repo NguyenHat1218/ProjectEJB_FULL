@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body{
+                min-height: 100vh;
+                display: flex;
+                background: #ddd;
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+                background-image: url('https://i.imgur.com/Pzksh49.png');
+                object-fit: cover;
+            }
+            h1{
+                text-align: center;
+                font-size: 30px;
+                font-weight: 400;
+            }
+            form{
+                max-width: 500px;
+                width: 100%;
+                background: #fff;
+                padding: 20px;
+                border-radius: 15px;
+            }
+            input[type="text"]{
+                width: 100%;
+                height: 30px;
+                border: 1px solid #ddd;
+                padding: 0 10px;
+                margin: 10px 0;
+            }
+            input[type="submit"]{
+                padding: 10px 15px;
+                width: 90%;
+                margin: 10px auto 10px auto;
+                display: block;
+                border: 1px solid transparent;
+                outline: none;
+                color: #fff;
+                background: plum;
+                cursor:pointer;
+                font-weight: 600;
+                transition: all 0.4s ease;
+            }
+            input[type="submit"]:hover{
+                background: mediumorchid;
+            }
+            .msg{
+                background: green;
+                color: #fff;
+                padding: 5px 7px;
+                margin: 10px 0;
+                display: block;
+                text-align: center;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h1>Add Employee and Territories</h1>
+            <h:outputText value="#{employeeTerritoriesMB.msg}" styleClass="msg"/>
+            <br/>
+            <h:outputText value="Employee ID"/>
+            <h:inputText value="#{employeeTerritoriesMB.employeeId}" id="employeeId" p:list="showEmployees"/>
+            <h:panelGroup>
+                <datalist id="showEmployees">
+                    <h:selectOneMenu>
+                        <f:selectItems value="#{employeeTerritoriesMB.showEmployees()}" var="item" itemLabel="#{item.firstName}" itemValue="#{item.employeeID}"/>
+                    </h:selectOneMenu>
+                </datalist>
+            </h:panelGroup>
+            <br/>
+            <h:outputText value="Terrtories ID"/>
+            <h:inputText value="#{employeeTerritoriesMB.terriId}" p:list="showTerritories" id="terriId"/>
+            <h:panelGroup>
+                <datalist id="showTerritories">
+                    <h:selectOneMenu>
+                        <f:selectItems value="#{employeeTerritoriesMB.showTerritories()}" var="item" itemLabel="#{item.territoryDescription}" itemValue="#{item.territoryID}"/>
+                    </h:selectOneMenu>
+                </datalist>
+            </h:panelGroup>
+            <br/>
+            <h:commandButton action="#{employeeTerritoriesMB.addEmployeeTerritories()}" value="Add Employee Terrtories"/>
+        </h:form>
+    </h:body>
+</html>
+

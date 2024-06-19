@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body{
+                background: #ddd;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                background-image: url('https://i.imgur.com/Pzksh49.png');
+                object-fit: cover;
+            }
+            .container{
+                max-width: 400px;
+                width: 100%;
+                background: #fff;
+                padding: 20px;
+                border-radius: 20px;
+                
+            }
+            .title{
+                font-size: 30px;
+                text-align: center;
+                display: block;
+            }
+            .input{
+                margin: 10px 0;
+            }
+            input[type="text"]{
+                width: 100%;
+                display: block;
+                height: 30px;
+                padding: 0 10px;
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                margin-top: 7px;
+                outline: none;
+            }
+            .title{
+                text-align: center;
+            }
+            input[type="submit"]{
+                width: 100%;
+                display: block;
+                cursor: pointer;
+                height: 30px;
+                font-weight: 600;
+                color: #fff;
+                border: 1px solid transparent;
+                transition: all 0.4s ease;
+                outline: none;
+                border-radius: 10px;
+            }
+            input[type="submit"]{
+                background:tomato;
+            }
+            
+            input[type="submit"]:hover{
+                transform: scale(1.2);
+            }
+            table{
+                width: 100%;
+            }
+            table th{
+                background: dodgerblue;
+                color: #fff;
+                padding: 7px 9px;
+                border: 1px solid #ddd;
+                text-align: left;
+            }
+            table td{
+                padding: 7px 9px;
+                border: 1px solid #ddd;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <h:form id="frmFindShipper">
+                <h:outputText value="Find Shipper by ID" class="title"/>
+                <div class="input">
+                    <h:outputText value="Shipper ID"/>
+                    <h:inputText value="#{shippersMB.shipperId}"/>
+                </div>
+                <div class="input">
+                    <h:commandButton value="Search" action="#{shippersMB.findShipperById()}" class="btn-search"/>
+                </div>
+            </h:form>
+            <h:dataTable value="#{shippersMB.listShippers}" var="item">
+                <h:column>
+                    <f:facet name="header">Shipper ID</f:facet>
+                    <h:outputText value="#{item.shipperID}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Company Name</f:facet>
+                    <h:outputText value="#{item.companyName}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Company Phone</f:facet>
+                    <h:outputText value="#{item.phone}"/>
+                </h:column>
+            </h:dataTable>
+        </div>
+    </h:body>
+</html>
+

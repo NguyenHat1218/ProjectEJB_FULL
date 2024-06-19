@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body{
+                background: #ddd;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+            }
+            .container{
+                max-width: 400px;
+                width: 100%;
+                background: #fff;
+                padding: 20px;
+                border-radius: 20px;
+                
+            }
+            .title{
+                font-size: 30px;
+                text-align: center;
+            }
+            .input{
+                margin: 10px 0;
+            }
+            input[type="text"],select{
+                width: 100%;
+                display: block;
+                border-radius: 5px;
+                height: 30px;
+                padding: 0 10px;
+                border: 1px solid #ddd;
+                outline: none;
+                margin-top: 5px;
+            }
+            .title{
+                text-align: center;
+            }
+            input[type="submit"],input[type="reset"]{
+                width: 40%;
+                height: 30px;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                margin: 0 10px;
+            }
+            input[type="submit"]{
+                background:limegreen;
+                color: #fff;
+            }
+            input[type="reset"]{
+                background: #ff5159;
+                color: #fff;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <h:form id="frmAddTerri">
+                <h:outputText value="Add new Territories" class="title"/>
+                <div class="input">
+                    <h:outputText value="Region"/>
+                    <h:selectOneMenu value="#{territoriesMB.regionID}">
+                        <f:selectItems value="#{territoriesMB.showAllRegion()}" 
+                                       var="itemTerri" 
+                                       itemValue="#{itemTerri.regionID}"
+                                       itemLabel="#{itemTerri.regionDescription}"></f:selectItems>
+                    </h:selectOneMenu>
+                </div>
+                <div class="input">
+                    <h:outputText value="Territories ID"/>
+                    <h:inputText value="#{territoriesMB.territoryID}"/>
+                </div>
+                <div class="input">
+                    <h:outputText value="Territories Description"/>
+                    <h:inputText value="#{territoriesMB.territoryDescription}"/>
+                </div>
+                <div class="input">
+                    <h:commandButton value="Add" action="#{territoriesMB.addNewTerritories()}"/>
+                    <h:commandButton value="Reset" type="reset"/>
+                </div>
+            </h:form>
+        </div>
+    </h:body>
+</html>
+

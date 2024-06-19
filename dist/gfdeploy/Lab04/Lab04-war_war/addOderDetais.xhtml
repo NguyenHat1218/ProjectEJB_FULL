@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body{
+                background: #ddd;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                background-image: url('https://i.imgur.com/Pzksh49.png');
+                object-fit: cover;
+            }
+            .container{
+                max-width: 400px;
+                width: 100%;
+                background: #fff;
+                padding: 20px;
+                border-radius: 20px;
+                
+            }
+            .title{
+                font-size: 30px;
+                text-align: center;
+            }
+            .input{
+                margin: 10px 0;
+            }
+            input[type="text"],select{
+                width: 100%;
+                display: block;
+                border-radius: 5px;
+                height: 30px;
+                padding: 0 10px;
+                border: 1px solid #ddd;
+                outline: none;
+                margin-top: 5px;
+            }
+            .title{
+                text-align: center;
+                display: block;
+            }
+            input[type="submit"],input[type="reset"]{
+                width: 40%;
+                height: 30px;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                margin: 0 10px;
+                font-weight: 600;
+            }
+            input[type="submit"]{
+                background:limegreen;
+                color: #fff;
+            }
+            input[type="reset"]{
+                background: #ff5159;
+                color: #fff;
+            }
+            .msg{
+                background: green;
+                color: #fff;
+                padding: 5px 7px;
+                margin: 10px 0;
+                display: block;
+                text-align: center;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <h:outputText value="#{orderDetailsMB.msg}" class="msg"/>
+            <h:form id="frmAddTerri">
+                <h:outputText value="Add new Order Details" class="title"/>
+                <div class="input">
+                    <h:outputText value="Order ID"/>
+                    <h:selectOneMenu value="#{orderDetailsMB.orderID}">
+                        <f:selectItems value="#{orderDetailsMB.showOrders()}" 
+                                       var="itemOder" 
+                                       itemValue="#{itemOder.orderID}"
+                                       itemLabel="#{itemOder.orderID}"></f:selectItems>
+                    </h:selectOneMenu>
+                </div>
+                <div class="input">
+                    <h:outputText value="Product ID"/>
+                    <h:selectOneMenu value="#{orderDetailsMB.productID}">
+                        <f:selectItems value="#{orderDetailsMB.showProducts()}" 
+                                       var="itemPro" 
+                                       itemValue="#{itemPro.productID}"
+                                       itemLabel="#{itemPro.productName}"></f:selectItems>
+                    </h:selectOneMenu>
+                </div>
+                <div class="input">
+                    <h:outputText value="Unit price"/>
+                    <h:inputText value="#{orderDetailsMB.unitPrice}"/>
+                </div>
+                <div class="input">
+                    <h:outputText value="Quantity"/>
+                    <h:inputText value="#{orderDetailsMB.quantity}"/>
+                </div>
+                <div class="input">
+                    <h:outputText value="Discount (Ex: 0.1, 0.5, 0.15, 0.2, 0.25)"/>
+                    <h:inputText value="#{orderDetailsMB.discount}"/>
+                </div>
+                <div class="input">
+                    <h:commandButton value="Add" action="#{orderDetailsMB.insertOder()}"/>
+                    <h:commandButton value="Reset" type="reset"/>
+                </div>
+            </h:form>
+        </div>
+    </h:body>
+</html>
+
